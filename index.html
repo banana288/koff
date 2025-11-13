@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кофейня "Уютная" - Лучший кофе в городе</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Общие стили */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary-color: #6f4e37;
+            --secondary-color: #c0a080;
+            --accent-color: #d4b896;
+            --light-color: #f9f5f0;
+            --dark-color: #3a2c22;
+            --text-color: #2c2c2c;
+            --success-color: #4caf50;
+            --warning-color: #ff9800;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Шапка и навигация */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 10px;
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+            position: relative;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li a i {
+            margin-right: 5px;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Основной контент */
+        main {
+            min-height: calc(100vh - 140px);
+            padding: 2rem 0;
+        }
+        
+        .page {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+        
+        h1:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 10px auto;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Герой-секция */
+        .hero {
+            background: linear-gradient(rgba(111, 78, 55, 0.85), rgba(111, 78, 55, 0.85)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 5rem 1rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .hero h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero h1:after {
+            background: var(--accent-color);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid var(--accent-color);
+            color: white;
+            margin-left: 10px;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+        }
+        
+        /* Карточки */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+        
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--success-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* Меню */
+        .menu-category {
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .menu-item {
+            background: var(--light-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+        
+        .menu-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .menu-item-info h3 {
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .menu-item-info h3 i {
+            margin-right: 8px;
+            color: var(--secondary-color);
+        }
+        
+        .menu-item-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0;
+        }
+        
+        .menu-item-price {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        /* О нас */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            margin: 2rem 0;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        /* Контакты */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .contact-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-card i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto 0;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s, box-shadow 0.3s;
+        }
+        
+        input:focus, textarea:focus, select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(111, 78, 55, 0.1);
+        }
+        
+        /* Отзывы */
+        .reviews {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .review {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .review-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .review-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 1rem;
+        }
+        
+        .review-stars {
+            color: var(--warning-color);
+            margin-left: auto;
+        }
+        
+        /* Подвал */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-right: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background: var(--accent-color);
+            color: var(--dark-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--primary-color);
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                padding: 0.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cards, .menu-items, .features, .contact-info, .reviews {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-secondary {
+                margin-left: 0;
+                margin-top: 10px;
+                display: block;
+            }
+        }
+        
+        /* Анимации */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Дополнительные стили */
+        .section-subtitle {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--secondary-color), transparent);
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Шапка с навигацией -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span class="logo-icon"><i class="fas fa-coffee"></i></span>
+                Кофейня "Уютная"
+            </div>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav>
+                <ul>
+                    <li><a href="#" data-page="home"><i class="fas fa-home"></i> Главная</a></li>
+                    <li><a href="#" data-page="menu"><i class="fas fa-utensils"></i> Меню</a></li>
+                    <li><a href="#" data-page="about"><i class="fas fa-info-circle"></i> О нас</a></li>
+                    <li><a href="#" data-page="reviews"><i class="fas fa-star"></i> Отзывы</a></li>
+                    <li><a href="#" data-page="contact"><i class="fas fa-envelope"></i> Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <!-- Главная страница -->
+        <section id="home" class="page active">
+            <div class="hero">
+                <h1>Кофейня "Уютная"</h1>
+                <p>Место, где каждый глоток кофе рассказывает свою историю, а атмосфера дарит ощущение дома. Приходите и откройте для себя мир изысканных вкусов!</p>
+                <a href="#" class="btn pulse" data-page="menu">Посмотреть меню</a>
+                <a href="#" class="btn btn-secondary" data-page="contact">Забронировать столик</a>
+            </div>
+            
+            <h2>Популярные позиции</h2>
+            <p class="section-subtitle">Наши гости чаще всего выбирают эти вкусные предложения</p>
+            
+            <div class="cards">
+                <div class="card">
+                    <div class="card-badge">Хит</div>
+                    <div class="card-content">
+                        <h3>Латте Арт <i class="fas fa-mug-hot"></i></h3>
+                        <p>Идеально сбалансированный кофе с молоком и изысканным рисунком на поверхности. Наши бариста создают настоящие произведения искусства!</p>
+                        <div class="price">280 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-badge">Новинка</div>
+                    <div class="card-content">
+                        <h3>Круассан с миндалем <i class="fas fa-cookie-bite"></i></h3>
+                        <p>Слоеный круассан с нежной миндальной начинкой и хрустящей корочкой. Идеальное дополнение к утреннему кофе.</p>
+                        <div class="price">190 ₽</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3>Фильтр-кофе <i class="fas fa-filter"></i></h3>
+                        <p>Аромтаный кофе, приготовленный методом pour-over, раскрывающий все оттенки вкуса. Для истинных ценителей кофе.</p>
+                        <div class="price">320 ₽</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <h2>Почему выбирают нас?</h2>
+            <p class="section-subtitle">Мы заботимся о каждом аспекте вашего визита, чтобы сделать его незабываемым</p>
+            
+            <div class="cards">
+                <div class="card">
+                    <div class="card-content">
+                        <h3><i class="fas fa-coffee"></i> Свежие зерна</h3>
+                        <p>Мы обжариваем кофе каждую неделю, чтобы гарантировать свежесть и насыщенный вкус. Работаем напрямую с фермерами из Эфиопии, Колумбии и Бразилии.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3><i class="fas fa-couch"></i> Уютная атмосфера</h3>
+                        <p>Наше пространство создано для комфортного отдыха, работы и встреч с друзьями. Удобные кресла, приглушенный свет и приятная музыка.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3><i class="fas fa-user-friends"></i> Вежливый персонал</h3>
+                        <p>Наши бариста всегда помогут с выбором и приготовят кофе именно так, как вам нравится. Мы регулярно проводим обучение для нашего персонала.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Страница меню -->
+        <section id="menu" class="page">
+            <h1>Наше меню</h1>
+            <p class="section-subtitle">Мы тщательно разрабатываем наше меню, чтобы предложить вам лучшие вкусовые сочетания</p>
+            
+            <div class="menu-category">
+                <h2><i class="fas fa-coffee"></i> Кофе</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h3><i class="fas fa-coffee"></i> Эспрессо</h3>
+                            <p>Классический крепкий кофе, приготовленный в профессиональной кофемашине</p>
+                        </div>
+                        <div class="menu-item-price">200 ₽</div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h3><i class="fas fa-coffee"></i> Американо</h3>
+                            <p>Эспрессо с добавлением горячей воды для более мягкого вкуса</p>
+                        </div>
+                        <div class="menu-item-price">220 ₽</div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h3><i class="fas fa-coffee"></i> Капучино</h3>
+                            <p>Идеальное сочетание эспрессо, молока и воздушной молочной пенки</p>
+                        </div>
+                        <div class="menu-item-price">260 ₽</div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h3><i class="fas fa-coffee"></i> Латте</h3>
+                            <p>Эспрессо с большим количеством молока и нежной пенкой</p>
+                        </div>
+                        <div class="menu-item-price">280 ₽</div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h3><i class="fas fa-coffee"></i> Флэт Уайт</h3>
+                            <p>Двойной эспрессо с микро-пенкой для насыщенного кофейного вкуса</p>
+                        </div>
+                        <div class="menu-item-price">290 ₽</div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h3><i class="fas fa-coffee"></i> Раф кофе</h3>
+                            <p>Кофе со сливками и ванильным сиропом, взбитый до нежной консистенции</p>
+                        </div>
+                        <div class="menu-item-price">320 ₽</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <h2><i class="fas fa-cookie"></i> Десерты</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h3><i class="fas fa-cookie"></i> Тирамису</h3>
+                            <p>Классический итальянский десерт с кофейной пропиткой</p>
+                        </div>
+                        <div class="menu-item-price">350 ₽</div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h3><i class="fas fa-cookie"></i> Чизкейк Нью-Йорк</h3>
+                            <p>Нежный чизкейк с ягодным соусом и песочной основой</p>
+                        </div>
+                        <div class="menu-item-price">320 ₽</div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h3><i class="fas fa-cookie"></i> Круассан с шоколадом</h3>
+                            <p>Слоеный круассан с начинкой из бельгийского шоколада</p>
+                        </div>
+                        <div class="menu-item-price">190 ₽</div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h3><i class="fas fa-cookie"></i> Макарон</h3>
+                            <p>Французское пирожное с различными начинками</p>
+                        </div>
+                        <div class="menu-item-price">180 ₽</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="menu-category">
+                <h2><i class="fas fa-glass-whiskey"></i> Другие напитки</h2>
+                <div class="menu-items">
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h3><i class="fas fa-glass-whiskey"></i> Горячий шоколад</h3>
+                            <p>Густой напиток из настоящего шоколада со взбитыми сливками</p>
+                        </div>
+                        <div class="menu-item-price">280 ₽</div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h3><i class="fas fa-glass-whiskey"></i> Чай черный/зеленый</h3>
+                            <p>Листовой чай премиум-класса с выбором добавок</p>
+                        </div>
+                        <div class="menu-item-price">200 ₽</div>
+                    </div>
+                    
+                    <div class="menu-item">
+                        <div class="menu-item-info">
+                            <h3><i class="fas fa-glass-whiskey"></i> Лимонад свежий</h3>
+                            <p>Освежающий лимонад с мятой и сезонными ягодами</p>
+                        </div>
+                        <div class="menu-item-price">280 ₽</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- О нас -->
+        <section id="about" class="page">
+            <h1>О нашей кофейне</h1>
+            <p class="section-subtitle">Узнайте больше о нашей истории, философии и команде</p>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Кофейня "Уютная" открыла свои двери в 2018 году с простой миссией: создавать место, где каждый может почувствовать себя как дома, наслаждаясь прекрасным кофе.</p>
+                    
+                    <p>Мы тщательно отбираем зерна из лучших регионов мира и обжариваем их небольшими партиями, чтобы сохранить уникальные вкусовые профили каждого сорта. Наш главный бариста, <span class="highlight">Анна Петрова</span>, регулярно посещает кофейные плантации, чтобы лично контролировать качество сырья.</p>
+                    
+                    <p>Наши бариста проходят специальное обучение и постоянно совершенствуют свои навыки, чтобы приготовить для вас идеальную чашку кофе. Мы проводим ежемесячные воркшопы и дегустации для наших гостей.</p>
+                    
+                    <p>Мы верим, что кофе - это не просто напиток, а искусство, которое объединяет людей и создает особую атмосферу. В нашей кофейне регулярно проходят выставки местных художников и музыкальные вечера.</p>
+                </div>
+                
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Интерьер кофейни">
+                </div>
+            </div>
+            
+            <h2>Наши ценности</h2>
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-award"></i>
+                    <h3>Качество</h3>
+                    <p>Мы используем только лучшие ингредиенты и следим за каждым этапом приготовления</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Экологичность</h3>
+                    <p>Мы заботимся о планете и используем экологичную упаковку, а также перерабатываем отходы</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-users"></i>
+                    <h3>Сообщество</h3>
+                    <p>Мы создаем пространство для общения, вдохновения и совместного творчества</p>
+                </div>
+                
+                <div class="feature">
+                    <i class="fas fa-heart"></i>
+                    <h3>Забота</h3>
+                    <p>Мы заботимся о наших гостях и создаем для них комфортную атмосферу</p>
+                </div>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <h2>Наша команда</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-content">
+                        <h3><i class="fas fa-user"></i> Анна Петрова</h3>
+                        <p class="highlight">Главный бариста</p>
+                        <p>Сертифицированный Q-грейдер с 8-летним опытом работы в кофейной индустрии. Проводит обучение для команды и разрабатывает новые рецепты.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3><i class="fas fa-user"></i> Максим Иванов</h3>
+                        <p class="highlight">Шеф-кондитер</p>
+                        <p>Выпускник Le Cordon Bleu с 10-летним опытом. Создает уникальные десерты, которые идеально сочетаются с нашим кофе.</p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-content">
+                        <h3><i class="fas fa-user"></i> Елена Смирнова</h3>
+                        <p class="highlight">Управляющая</p>
+                        <p>Обеспечивает безупречную работу кофейни и заботится о том, чтобы каждый гость чувствовал себя особенным.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Отзывы -->
+        <section id="reviews" class="page">
+            <h1>Отзывы наших гостей</h1>
+            <p class="section-subtitle">Мы ценим мнение каждого посетителя и постоянно работаем над улучшением нашего сервиса</p>
+            
+            <div class="reviews">
+                <div class="review">
+                    <div class="review-header">
+                        <div class="review-avatar">ИК</div>
+                        <div>
+                            <h4>Ирина К.</h4>
+                            <p>Постоянный гость</p>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p>Это мое любимое место в городе! Кофе всегда безупречен, десерты свежие и вкусные. Особенно люблю их сезонные предложения. Персонал очень внимательный и дружелюбный.</p>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <div class="review-avatar">ДС</div>
+                        <div>
+                            <h4>Дмитрий С.</h4>
+                            <p>Впервые посетил</p>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <p>Зашел случайно и не пожалел! Атмосфера очень уютная, Wi-Fi быстрый, что важно для работы. Кофе приготовлен идеально. Обязательно вернусь!</p>
+                </div>
+                
+                <div class="review">
+                    <div class="review-header">
+                        <div class="review-avatar">ОЛ</div>
+                        <div>
+                            <h4>Ольга Л.</h4>
+                            <p>Частый гость</p>
+                        </div>
+                        <div class="review-stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p>Лучший капучино в городе! Всегда с идеальной пенкой и красивым рисунком. Люблю приходить сюда с подругами - уютная атмосфера располагает к долгим беседам.</p>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <h3>Оставьте свой отзыв</h3>
+                <form id="reviewForm">
+                    <div class="form-group">
+                        <label for="reviewName">Ваше имя:</label>
+                        <input type="text" id="reviewName" name="reviewName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reviewRating">Оценка:</label>
+                        <select id="reviewRating" name="reviewRating" required>
+                            <option value="">Выберите оценку</option>
+                            <option value="5">Отлично (5 звезд)</option>
+                            <option value="4">Хорошо (4 звезды)</option>
+                            <option value="3">Удовлетворительно (3 звезды)</option>
+                            <option value="2">Плохо (2 звезды)</option>
+                            <option value="1">Ужасно (1 звезда)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reviewText">Ваш отзыв:</label>
+                        <textarea id="reviewText" name="reviewText" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Отправить отзыв</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Контакты -->
+        <section id="contact" class="page">
+            <h1>Контакты</h1>
+            <p class="section-subtitle">Мы всегда рады видеть вас в нашей кофейне! Свяжитесь с нами любым удобным способом</p>
+            
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Адрес</h3>
+                    <p>ул. Кофейная, 15<br>Москва, Россия</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Часы работы</h3>
+                    <p>Пн-Пт: 8:00-22:00<br>Сб-Вс: 9:00-23:00</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Телефон</h3>
+                    <p>+7 (495) 123-45-67</p>
+                </div>
+                
+                <div class="contact-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p>info@cozycoffee.ru</p>
+                </div>
+            </div>
+            
+            <h2>Свяжитесь с нами</h2>
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Ваше имя:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Телефон:</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Тема:</label>
+                        <select id="subject" name="subject">
+                            <option value="">Выберите тему</option>
+                            <option value="reservation">Бронирование столика</option>
+                            <option value="feedback">Отзыв</option>
+                            <option value="cooperation">Сотрудничество</option>
+                            <option value="event">Организация мероприятия</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Сообщение:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Отправить</button>
+                </form>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <h2>Как нас найти</h2>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1559925393-8be0ec4767c8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Карта проезда">
+            </div>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Кофейня "Уютная"</h3>
+                    <p>Место, где рождаются вкусные моменты и теплые воспоминания. Мы стремимся сделать каждый ваш визит особенным.</p>
+                    <div class="social-links">
+                        <a href="https://t.me/lerkavvl"><i class="fab fa-telegram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Меню</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="menu"><i class="fas fa-coffee"></i> Кофе</a></li>
+                        <li><a href="#" data-page="menu"><i class="fas fa-cookie"></i> Десерты</a></li>
+                        <li><a href="#" data-page="menu"><i class="fas fa-glass-whiskey"></i> Другие напитки</a></li>
+                        <li><a href="#" data-page="menu"><i class="fas fa-utensils"></i> Сезонные предложения</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Информация</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" data-page="about"><i class="fas fa-info-circle"></i> О нас</a></li>
+                        <li><a href="#" data-page="reviews"><i class="fas fa-star"></i> Отзывы</a></li>
+                        <li><a href="#" data-page="contact"><i class="fas fa-envelope"></i> Контакты</a></li>
+                        <li><a href="#"><i class="fas fa-shipping-fast"></i> Доставка</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> ул. Кофейная, 15, Москва</a></li>
+                        <li><a href="tel:+74951234567"><i class="fas fa-phone"></i> +7 (495) 123-45-67</a></li>
+                        <li><a href="mailto:info@cozycoffee.ru"><i class="fas fa-envelope"></i> info@cozycoffee.ru</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> Пн-Пт: 8:00-22:00, Сб-Вс: 9:00-23:00</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 Кофейня "Уютная". Все права защищены.</p>
+                <p>Сайт разработан с <i class="fas fa-heart" style="color: #e25555;"></i> для ценителей хорошего кофе</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Навигация между страницами
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('nav a, .btn[data-page], .footer-links a');
+            const pages = document.querySelectorAll('.page');
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('nav ul');
+            
+            // Переключение страниц
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetPage = this.getAttribute('data-page');
+                    
+                    // Скрыть все страницы
+                    pages.forEach(page => {
+                        page.classList.remove('active');
+                    });
+                    
+                    // Показать целевую страницу
+                    document.getElementById(targetPage).classList.add('active');
+                    
+                    // Закрыть меню на мобильных устройствах
+                    if (window.innerWidth <= 768) {
+                        navMenu.classList.remove('show');
+                    }
+                    
+                    // Прокрутка к верху страницы
+                    window.scrollTo(0, 0);
+                });
+            });
+            
+            // Переключение мобильного меню
+            menuToggle.addEventListener('click', function() {
+                navMenu.classList.toggle('show');
+            });
+            
+            // Обработка форм
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.');
+                    contactForm.reset();
+                });
+            }
+            
+            const reviewForm = document.getElementById('reviewForm');
+            if (reviewForm) {
+                reviewForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Спасибо за ваш отзыв! Мы ценим ваше мнение.');
+                    reviewForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
